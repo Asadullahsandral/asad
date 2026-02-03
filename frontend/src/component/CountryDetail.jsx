@@ -45,8 +45,6 @@ export default function CountryDetail() {
               <p>
                 <b>
                   Native Name:{" "}
-                  {/* {Object.values(countryData.name.nativeName)[0].common ||
-                    " N/A"} */}
                   {countryData.name.nativeName
                     ? Object.values(countryData.name.nativeName)[0]?.common
                     : "N/A"}
