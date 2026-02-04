@@ -106,15 +106,6 @@ export default function CountryDetail() {
                 {countryData.borders?.length > 0
                   ? countryData.borders.join(", ")
                   : "No Border Countries"}
-                {/* {countryData.borders ? (
-                  countryData.borders.map((border) => {
-                    //   console.log(border);
-                    return <span key={border.name}>{border} ,</span>;
-                  })
-                ) : (
-                  <span>No Border</span>
-                )} */}
-                {/* {console.log(countryData?.borders)} */}
               </b>
               &nbsp;
             </div>
