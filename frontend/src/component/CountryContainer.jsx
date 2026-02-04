@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
 
-export default function CountryContainer({ query }) {
+export default function CountryContainer({ query, region }) {
   const [countriesData, setCountriesData] = useState([]);
 
   useEffect(() => {
@@ -20,15 +20,20 @@ export default function CountryContainer({ query }) {
       });
   }, []);
 
+  const filteredCountries = region
+    ? countriesData.filter((country) => country.region === region)
+    : countriesData;
+  // console.log(filteredCountries);
+
   if (!countriesData.length) {
     return <Loading />;
   }
 
-  return countriesData === null ? (
+  return filteredCountries === null ? (
     <Loading />
   ) : (
     <div className="countries-container">
-      {countriesData
+      {filteredCountries
         .filter((country) => {
           return country.name.common
             .toLowerCase()
@@ -53,8 +58,10 @@ export default function CountryContainer({ query }) {
 
 CountryContainer.propTypes = {
   query: PropTypes.string,
+  region: PropTypes.string,
 };
 
 CountryContainer.defaultProps = {
   query: "",
+  region: "",
 };

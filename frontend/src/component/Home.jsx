@@ -6,14 +6,15 @@ import SelectMenu from "./SelectMenu";
 
 export default function Home() {
   const [query, setQuery] = useState("");
+  const [region, setRegion] = useState("");
   return (
     <>
       <main>
         <div className="search-filter-container">
           <SearchBar setQuery={setQuery} />
-          <SelectMenu />
+          <SelectMenu setRegion={setRegion} />
         </div>
-        <CountryContainer query={query} />
+        <CountryContainer query={query} region={region} />
       </main>
       {/* <Outlet /> */}
     </>
