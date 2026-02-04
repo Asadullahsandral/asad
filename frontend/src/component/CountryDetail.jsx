@@ -17,11 +17,14 @@ export default function CountryDetail() {
       .then((data) => {
         // console.log(data);
         setCountryData(data[0]);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }, [name]);
 
   if (!countryData) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return countryData === null ? (
