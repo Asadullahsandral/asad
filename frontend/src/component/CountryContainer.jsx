@@ -1,7 +1,7 @@
 import CountryCard from "./CountryCard";
 // import countriesData from "../../CountriesData.js";
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Loading from "./Loading";
 
 export default function CountryContainer({ query, region }) {
@@ -20,25 +20,41 @@ export default function CountryContainer({ query, region }) {
       });
   }, []);
 
-  const filteredCountries = region
-    ? countriesData.filter((country) => country.region === region)
-    : countriesData;
+  // const filteredCountries = region
+  //   ? countriesData.filter((country) => country.region === region)
+  //   : countriesData;
   // console.log(filteredCountries);
+
+  const filterCountries = useMemo(() => {
+    return countriesData.filter((country) => {
+      const matchesSearch = country.name.common
+        .toLowerCase()
+        .includes(query.toLowerCase());
+
+      const matchesRegion = region ? country.region === region : true;
+
+      return matchesRegion && matchesSearch;
+    });
+  }, [query, region, countriesData]);
+
+  // console.log(filterCountries);
 
   if (!countriesData.length) {
     return <Loading />;
   }
 
-  return filteredCountries === null ? (
+  // return filteredCountries === null ? (
+  return filterCountries === null ? (
     <Loading />
   ) : (
     <div className="countries-container">
-      {filteredCountries
-        .filter((country) => {
-          return country.name.common
-            .toLowerCase()
-            .includes(query.toLowerCase());
-        })
+      {filterCountries
+        // {filteredCountries
+        //   .filter((country) => {
+        //     return country.name.common
+        //       .toLowerCase()
+        //       .includes(query.toLowerCase());
+        //   })
         .map((country) => {
           // console.log(country);
           return (
