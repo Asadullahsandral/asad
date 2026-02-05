@@ -7,21 +7,39 @@ import Loading from "./Loading";
 export default function CountryDetail() {
   const { name } = useParams();
   const [countryData, setCountryData] = useState(null);
+  const [countryBorder, setCountryBorder] = useState(null);
+
   //   const countryData = CountriesData.find((country) => {
   //     return country.name.common === name;
   //   });
   //   console.log(name);
+
   useEffect(() => {
     fetch(`https://restcountries.com/v3.1/name/${name}?fullText=true`)
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
         setCountryData(data[0]);
+        // console.log(data[0].borders);
+        if (data[0].borders) {
+          fetch(
+            `https://restcountries.com/v3.1/alpha/?codes=${data[0].borders.join(",")}&fields=name`,
+          )
+            .then((res) => res.json())
+            .then((border) => {
+              //   console.log(border);
+              setCountryBorder(border);
+            });
+        } else {
+          setCountryBorder([]);
+        }
       })
       .catch((err) => {
         console.log(err);
       });
   }, [name]);
+
+  //   console.log(countryBorder);
 
   if (!countryData) {
     return <Loading />;
@@ -103,24 +121,25 @@ export default function CountryDetail() {
                 <span className="languages"></span>
               </p>
             </div>
-            <div className="border-countries">
-              <b>
-                Border Countries:
-                {countryData.borders?.length > 0
-                  ? countryData.borders.join(", ")
-                  : "No Border Countries"}
-                {/* {countryData.borders ? (
-                  countryData.borders.map((border) => {
-                    //   console.log(border);
-                    return <span key={border.name}>{border} ,</span>;
-                  })
-                ) : (
-                  <span>No Border</span>
-                )} */}
-                {/* {console.log(countryData?.borders)} */}
-              </b>
-              &nbsp;
-            </div>
+            {countryBorder?.length > 0 ? (
+              <div className="border-countries">
+                <b>Border Countries:</b>
+                &nbsp;
+                {countryBorder.map((border) => {
+                  //   console.log(border);
+                  return (
+                    <Link
+                      key={border.name.common}
+                      to={`/country/${border.name.common}`}
+                    >
+                      {border.name.common}
+                    </Link>
+                  );
+                })}
+              </div>
+            ) : (
+              <span>No Border</span>
+            )}
           </div>
         </div>
       </div>
