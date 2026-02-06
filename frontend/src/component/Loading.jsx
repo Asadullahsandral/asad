@@ -14,6 +14,14 @@ export default function SkeletonLoader() {
   return (
     <div className="skeleton-container">
       <div className="skeleton-image"></div>
+      <div className="skeleton-image"></div>
+      <div className="skeleton-image"></div>
+      <div className="skeleton-text"></div>
+      <div className="skeleton-text short"></div>
+      <div className="skeleton-text"></div>
+      <div className="skeleton-image"></div>
+      <div className="skeleton-image"></div>
+      <div className="skeleton-image"></div>
       <div className="skeleton-text"></div>
       <div className="skeleton-text short"></div>
       <div className="skeleton-text"></div>

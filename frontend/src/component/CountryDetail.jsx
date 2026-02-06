@@ -8,6 +8,7 @@ export default function CountryDetail() {
   const { name } = useParams();
   const [countryData, setCountryData] = useState(null);
   const [countryBorder, setCountryBorder] = useState(null);
+  //   console.log(name);
 
   //   const countryData = CountriesData.find((country) => {
   //     return country.name.common === name;
@@ -133,6 +134,7 @@ export default function CountryDetail() {
                       to={`/country/${border.name.common}`}
                     >
                       {border.name.common}
+                      {/* {console.log(border.name.common)} */}
                     </Link>
                   );
                 })}
