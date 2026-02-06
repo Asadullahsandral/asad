@@ -4,10 +4,17 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
 import PropTypes from "prop-types";
+import { useTheme } from "../Hooks/DarkLightMode";
+import { useWindowSize } from "../Hooks/windowSize";
+// import { ThemeContext } from "../context/ContextApi";
 
-export default function CountryDetail({ darkMode }) {
+export default function CountryDetail() {
   const { name } = useParams();
   const { state } = useLocation();
+  // const { darkMode } = useContext(ThemeContext);
+  const { darkMode } = useTheme();
+  const { windowSize } = useWindowSize();
+  // console.log(windowSize);
   const [countryData, setCountryData] = useState(null);
   const [countryBorder, setCountryBorder] = useState(null);
   //   console.log(state);
@@ -58,6 +65,9 @@ export default function CountryDetail({ darkMode }) {
     <Loading />
   ) : (
     <main className={`country-details-main ${darkMode ? "dark" : ""}`}>
+      <h1 style={{ textAlign: "center" }}>
+        {windowSize.width} x {windowSize.height}
+      </h1>
       <div className="country-details-container">
         <Link to="/">
           <span className="back-button">

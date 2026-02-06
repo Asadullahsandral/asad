@@ -1,6 +1,11 @@
 import PropTypes from "prop-types";
+// import { ThemeContext } from "../context/ContextApi";
+// import { useContext } from "react";
+import { useTheme } from "../Hooks/DarkLightMode";
 
-export default function Header({ darkMode, setDarkMode }) {
+export default function Header() {
+  // const { darkMode, setDarkMode } = useContext(ThemeContext);
+  const { darkMode, setDarkMode } = useTheme();
   return (
     <>
       <header className={`header-container ${darkMode ? "dark" : ""}`}>
