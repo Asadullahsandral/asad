@@ -1,44 +1,52 @@
 import "./countryDetail.css";
 // import CountriesData from "../../CountriesData";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
+import PropTypes from "prop-types";
 
-export default function CountryDetail() {
+export default function CountryDetail({ darkMode }) {
   const { name } = useParams();
+  const { state } = useLocation();
   const [countryData, setCountryData] = useState(null);
   const [countryBorder, setCountryBorder] = useState(null);
-  //   console.log(name);
+  //   console.log(state);
 
   //   const countryData = CountriesData.find((country) => {
   //     return country.name.common === name;
   //   });
   //   console.log(name);
 
+  function updateCountryData(data) {
+    setCountryData(data[0]);
+    if (data[0].borders) {
+      fetch(
+        `https://restcountries.com/v3.1/alpha/?codes=${data[0].borders.join(",")}&fields=name`,
+      )
+        .then((res) => res.json())
+        .then((border) => {
+          //   console.log(border);
+          setCountryBorder(border);
+        });
+    } else {
+      setCountryBorder([]);
+    }
+  }
+
   useEffect(() => {
+    if (state) {
+      updateCountryData([state.data]);
+      return;
+    }
     fetch(`https://restcountries.com/v3.1/name/${name}?fullText=true`)
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
-        setCountryData(data[0]);
-        // console.log(data[0].borders);
-        if (data[0].borders) {
-          fetch(
-            `https://restcountries.com/v3.1/alpha/?codes=${data[0].borders.join(",")}&fields=name`,
-          )
-            .then((res) => res.json())
-            .then((border) => {
-              //   console.log(border);
-              setCountryBorder(border);
-            });
-        } else {
-          setCountryBorder([]);
-        }
+        updateCountryData(data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [name]);
+  }, [name, state]);
 
   //   console.log(countryBorder);
 
@@ -49,7 +57,7 @@ export default function CountryDetail() {
   return countryData === null ? (
     <Loading />
   ) : (
-    <main>
+    <main className={darkMode ? "dark" : ""}>
       <div className="country-details-container">
         <Link to="/">
           <span className="back-button">
@@ -148,3 +156,7 @@ export default function CountryDetail() {
     </main>
   );
 }
+
+CountryDetail.propTypes = {
+  darkMode: PropTypes.bool.isRequired,
+};

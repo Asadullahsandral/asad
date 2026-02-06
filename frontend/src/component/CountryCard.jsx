@@ -7,10 +7,11 @@ export default function CountryCard({
   population,
   region,
   capital,
+  data,
 }) {
   //   console.log(name);
   return (
-    <Link className="country-card" to={`/country/${name}`}>
+    <Link className="country-card" to={`/country/${name}`} state={{ data }}>
       <img src={flag} alt={name.common + " Flag"} />
       <div className="card-text">
         <h3 className="card-title">{name}</h3>
@@ -36,4 +37,5 @@ CountryCard.propTypes = {
   population: PropTypes.number.isRequired,
   region: PropTypes.string.isRequired,
   capital: PropTypes.string,
+  data: PropTypes.object.isRequired,
 };
