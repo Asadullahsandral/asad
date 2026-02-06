@@ -19,11 +19,6 @@ export default function CountryDetail() {
   const [countryBorder, setCountryBorder] = useState(null);
   //   console.log(state);
 
-  //   const countryData = CountriesData.find((country) => {
-  //     return country.name.common === name;
-  //   });
-  //   console.log(name);
-
   function updateCountryData(data) {
     setCountryData(data[0]);
     if (data[0].borders) {
