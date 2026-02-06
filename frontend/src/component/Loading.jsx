@@ -1,30 +1,23 @@
-// import "./loading.css";
-
-// export default function Loading() {
-//   return (
-//     <div className="loading-container">
-//       <div className="spinner"></div>
-//       <p>Loading...</p>
-//     </div>
-//   );
-// }
 import "./loading.css";
 
-export default function SkeletonLoader() {
+export default function Loading() {
+  // new Array(10).fill('')
+
   return (
-    <div className="skeleton-container">
-      <div className="skeleton-image"></div>
-      <div className="skeleton-image"></div>
-      <div className="skeleton-image"></div>
-      <div className="skeleton-text"></div>
-      <div className="skeleton-text short"></div>
-      <div className="skeleton-text"></div>
-      <div className="skeleton-image"></div>
-      <div className="skeleton-image"></div>
-      <div className="skeleton-image"></div>
-      <div className="skeleton-text"></div>
-      <div className="skeleton-text short"></div>
-      <div className="skeleton-text"></div>
+    <div className="countries-container">
+      {Array.from({ length: 10 }).map((el, i) => {
+        return (
+          <div key={i} className="country-card shimmer-card">
+            <div className="flag-container"></div>
+            <div className="card-text">
+              <h3 className="card-title"></h3>
+              <p></p>
+              <p></p>
+              <p></p>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }

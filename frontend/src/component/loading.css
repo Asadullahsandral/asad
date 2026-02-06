@@ -1,70 +1,32 @@
-/* .loading-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 60vh;
+main .shimmer-card {
+  --shimmer-color: hsl(0, 0%, 78%);
 }
 
-.spinner {
-  width: 50px;
-  height: 50px;
-  border: 6px solid #e5e5e5;
-  border-top: 6px solid #0077ff;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin-bottom: 10px;
+main.dark .shimmer-card {
+  --shimmer-color: hsl(208, 21%, 34%);
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-.loading-text {
-  font-size: 1.2rem;
-  color: #555;
-} */
-
-.skeleton-container {
-  padding: 20px;
+.shimmer-card {
+  height: 338px;
+  background-color: var(--elements-color);
 }
 
-.skeleton-image {
-  /* width: 100%; */
-  width: 30%;
-  display: inline-block;
-  /* flex-direction: column; */
-  /* align-items: center; */
-  height: 300px;
-  background: #e0e0e0;
-  /* margin-bottom: 20px; */
-  margin-right: 20px;
-  border-radius: 8px;
-  animation: pulse 1.5s infinite;
+.shimmer-card .flag-container {
+  background-color: var(--shimmer-color);
 }
 
-.skeleton-text {
-  width: 100%;
-  height: 20px;
-  background: #e0e0e0;
-  margin-bottom: 10px;
+.shimmer-card .card-title {
+  height: 32px;
+  background-color: var(--shimmer-color);
   border-radius: 4px;
-  animation: pulse 1.5s infinite;
 }
 
-.skeleton-text.short {
+.shimmer-card p {
+  height: 22px;
+  border-radius: 4px;
+  background-color: var(--shimmer-color);
+}
+
+.shimmer-card p:last-child {
   width: 60%;
-}
-
-@keyframes pulse {
-  0% {
-    opacity: 0.6;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0.6;
-  }
 }

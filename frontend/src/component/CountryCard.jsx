@@ -12,7 +12,9 @@ export default function CountryCard({
   //   console.log(name);
   return (
     <Link className="country-card" to={`/country/${name}`} state={{ data }}>
-      <img src={flag} alt={name.common + " Flag"} />
+      <div className="flag-container">
+        <img src={flag} alt={name.common + " Flag"} />
+      </div>
       <div className="card-text">
         <h3 className="card-title">{name}</h3>
         <p>
