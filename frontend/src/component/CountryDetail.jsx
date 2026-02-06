@@ -57,7 +57,7 @@ export default function CountryDetail({ darkMode }) {
   return countryData === null ? (
     <Loading />
   ) : (
-    <main className={darkMode ? "dark" : ""}>
+    <main className={`country-details-main ${darkMode ? "dark" : ""}`}>
       <div className="country-details-container">
         <Link to="/">
           <span className="back-button">

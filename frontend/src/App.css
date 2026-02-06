@@ -26,7 +26,7 @@ header.dark {
 main {
   padding: 24px;
   /* height: 100vh; */
-  height: calc(100vh - 73px);
+  height: calc(100% - 73px);
 }
 
 a {
@@ -38,6 +38,9 @@ a {
   box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.1);
   padding-inline: 24px;
   background-color: var(--elements-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .header-content {
