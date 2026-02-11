@@ -2,7 +2,6 @@ import { useState } from "react";
 import CountryContainer from "./CountryContainer";
 import SearchBar from "./SearchBar";
 import SelectMenu from "./SelectMenu";
-import PropTypes from "prop-types";
 // import { ThemeContext } from "../context/ContextApi";
 import { useTheme } from "../Hooks/DarkLightMode";
 import { useWindowSize } from "../Hooks/windowSize";
@@ -28,7 +27,3 @@ export default function Home() {
     </>
   );
 }
-
-Home.propTypes = {
-  darkMode: PropTypes.bool.isRequired,
-};

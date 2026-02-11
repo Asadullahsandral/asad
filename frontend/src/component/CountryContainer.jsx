@@ -37,7 +37,7 @@ CountryContainer.propTypes = {
   region: PropTypes.string,
 };
 
-CountryContainer.defaultProps = {
-  query: "",
-  region: "",
-};
+// CountryContainer.defaultProps = {
+//   query: "",
+//   region: "",
+// };

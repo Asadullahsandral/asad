@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 // import { ThemeContext } from "../context/ContextApi";
 // import { useContext } from "react";
 import { useTheme } from "../Hooks/DarkLightMode";
@@ -30,8 +29,3 @@ export default function Header() {
     </>
   );
 }
-
-Header.propTypes = {
-  darkMode: PropTypes.bool.isRequired,
-  setDarkMode: PropTypes.func.isRequired,
-};

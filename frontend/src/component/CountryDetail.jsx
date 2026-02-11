@@ -3,7 +3,6 @@ import "./countryDetail.css";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
-import PropTypes from "prop-types";
 import { useTheme } from "../Hooks/DarkLightMode";
 import { useWindowSize } from "../Hooks/windowSize";
 // import { ThemeContext } from "../context/ContextApi";
@@ -161,7 +160,3 @@ export default function CountryDetail() {
     </main>
   );
 }
-
-CountryDetail.propTypes = {
-  darkMode: PropTypes.bool.isRequired,
-};
